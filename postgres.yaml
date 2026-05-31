@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"postgres"},"name":"postgres","namespace":"default"},"spec":{"containers":[{"env":[{"name":"POSTGRES_USER","value":"myuser"},{"name":"POSTGRES_PASSWORD","value":"mypassword"},{"name":"POSTGRES_DB","value":"mydb"}],"image":"postgres:15","name":"postgres","ports":[{"containerPort":5432}]}]}}
+  creationTimestamp: "2026-05-22T09:29:58Z"
+  generation: 2
+  labels:
+    app: postgres
+  name: postgres
+  namespace: default
+  resourceVersion: "37102"
+  uid: e8a8dac3-8706-4b3f-b28f-b3bcd0e74617
+spec:
+  containers:
+  - env:
+    - name: POSTGRES_USER
+      value: myuser
+    - name: POSTGRES_PASSWORD
+      value: mypassword
+    - name: POSTGRES_DB
+      value: mydb
+    image: postgres:15
+    imagePullPolicy: IfNotPresent
+    name: postgres
+    ports:
+    - containerPort: 5432
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rsqhc
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-rsqhc
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-05-31T03:40:31Z"
+    observedGeneration: 2
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-05-22T09:29:58Z"
+    observedGeneration: 2
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-05-31T03:40:31Z"
+    observedGeneration: 2
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-05-31T03:40:31Z"
+    observedGeneration: 2
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-05-22T09:29:58Z"
+    observedGeneration: 2
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://de87d2c10a2b62ee64d70d7c2a034ee72a9067e9583f435a38b10e13fa71eaae
+    image: docker.io/library/postgres:15
+    imageID: docker.io/library/postgres@sha256:1b92e7a80c021647bf70f5d3eb66066a998e4f5cf43c07bb9dc9f729782cf88e
+    lastState:
+      terminated:
+        containerID: containerd://d1fb686bf9afa4a6224901b31c9d466b509f6618dad77851360a76cb8179c2eb
+        exitCode: 0
+        finishedAt: "2026-05-31T08:04:54Z"
+        reason: Completed
+        startedAt: "2026-05-31T03:40:30Z"
+    name: postgres
+    ready: true
+    resources: {}
+    restartCount: 6
+    started: true
+    state:
+      running:
+        startedAt: "2026-05-31T08:05:12Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rsqhc
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.18.0.2
+  hostIPs:
+  - ip: 172.18.0.2
+  observedGeneration: 2
+  phase: Running
+  podIP: 10.244.0.6
+  podIPs:
+  - ip: 10.244.0.6
+  qosClass: BestEffort
+  startTime: "2026-05-22T09:29:58Z"
