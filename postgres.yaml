@@ -16,12 +16,12 @@ spec:
   containers:
   - env:
     - name: POSTGRES_USER
-      value: myuser
+      value: postgres
     - name: POSTGRES_PASSWORD
-      value: mypassword
+      value: Password09
     - name: POSTGRES_DB
-      value: mydb
-    image: postgres:15
+      value: djangoai
+    image: postgres:18
     imagePullPolicy: IfNotPresent
     name: postgres
     ports:
